@@ -29,7 +29,6 @@ services:
       - db
   db:
     image: postgres:12.0-alpine
-    restart: always
     volumes:
       - ./.data/postgres_dev:/var/lib/postgresql/data
     ports:

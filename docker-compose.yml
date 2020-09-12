@@ -9,7 +9,8 @@ version: '3.7'
 # command: because we are in dev mode, we won't use the entry point, rather than django dev server
 # while in production django server is not recommended, uWSGI is.
 # after adding db run: docker-compose run app python manage.py migrate
-# this will run app which in return run db, using the command python manage.py migrate
+# this will run app which in return run db, using the command :
+# docker-compose run app python manage.py migrate
 # navigate to: http://127.0.0.1:8000/ to start the app from the container
 services:
   app:

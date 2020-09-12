@@ -1,12 +1,12 @@
 # get the python on alpine os
-FROM python:3.7.4-alpine AS backend-builder
+FROM python:3.7.4-alpine
 
 # Add scripts to the path of the running container
 # we will create the script folder later
 ENV PATH /scripts:$PATH
 
 # copy the requirements from the our root to the container root
-ADD ./django-polls/requirements.txt /requirements.txt
+ADD ./requirements.txt /requirements.txt
 
 # the required Alpine packages to install uWSGI (which run our dj app in prod)
 # --update: packages will be updated
@@ -46,5 +46,4 @@ RUN chown -R user:user /vol
 RUN chmod -R 755 /vol/web
 USER user
 
-EXPOSE 8000
 CMD ["entrypoint.sh"]

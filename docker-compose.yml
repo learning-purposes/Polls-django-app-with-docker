@@ -8,7 +8,9 @@ version: '3.7'
 # ./app:/app: means we map our project into the app directory in the container
 # command: because we are in dev mode, we won't use the entry point, rather than django dev server
 # while in production django server is not recommended, uWSGI is.
-
+# after adding db run: docker-compose run app python manage.py migrate
+# this will run app which in return run db, using the command python manage.py migrate
+# navigate to: http://127.0.0.1:8000/ to start the app from the container
 services:
   app:
     build:
@@ -22,3 +24,15 @@ services:
       - DEBUG=1
     env_file:
       - ./django-polls/.env
+    depends_on:
+      - db
+  db:
+    image: postgres:12.0-alpine
+    restart: always
+    volumes:
+      - ./.data/postgres_dev:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+volumes:
+  postgres_dev:

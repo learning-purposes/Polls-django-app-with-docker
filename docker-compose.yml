@@ -1,0 +1,24 @@
+# this is used only to run the container in dev
+version: '3.7'
+
+# context: means we're gonna be using dockerfile located in . (root)
+# to create our app service
+# ports: we map the port (8000) local machine to docker container,
+# so we can access our app from the container on that port
+# ./app:/app: means we map our project into the app directory in the container
+# command: because we are in dev mode, we won't use the entry point, rather than django dev server
+# while in production django server is not recommended, uWSGI is.
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./django-polls:/app
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DEBUG=1
+    env_file:
+      - ./django-polls/.env

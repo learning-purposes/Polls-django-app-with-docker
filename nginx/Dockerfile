@@ -1,6 +1,6 @@
 FROM nginxinc/nginx-unprivileged:1-alpine
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY polls.conf /etc/nginx/conf.d/polls.conf
 COPY uwsgi_params /etc/nginx/uwsgi_params
 
 USER root

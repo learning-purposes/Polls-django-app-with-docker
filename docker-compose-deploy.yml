@@ -30,14 +30,14 @@ services:
 # app service and the proxy service
 # the app service will run and pull all static in static_root
 # which will be seen by this proxy
-# ports: as defined in default.conf
+# ports: as defined in polls.conf
   proxy:
     build:
       context: ./nginx
     volumes:
       - static_data:/vol/static
     ports:
-      - "8080:8080"
+      - "80:80"
     depends_on:
       - app
 

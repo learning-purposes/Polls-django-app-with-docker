@@ -21,7 +21,7 @@ services:
     volumes:
       - static_data:/vol/web
     env_file:
-      - ./django-polls/.env
+      - ./django-polls/.env-prod
     depends_on:
       - db
 
